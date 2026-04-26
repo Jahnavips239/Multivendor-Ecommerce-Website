@@ -1,53 +1,40 @@
 import React, { useState } from "react";
+import Search from "../components/Search";
 import { Link } from "react-router-dom";
 import Pagination from "../Pagination";
-import { FaEye } from "react-icons/fa";
+import { FaEdit, FaEye, FaTrash } from "react-icons/fa";
 
-const SellerRequest = () => {
+const Orders = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchValue, setSearchValue] = useState("");
   const [parPage, setParPage] = useState(5);
-  const [show, setShow] = useState(false);
 
   return (
     <div className="px-2 lg:px-7 pt-5">
-      <h1 className="text-[20px] font-bold mb-3"> Seller Request </h1>
+      <h1 className="text-[#000000] font-semibold text-lg mb-3">Orders</h1>
 
       <div className="w-full p-4 bg-[#6a5fdf] rounded-md">
-        <div className="flex justify-between items-center">
-          <select
-            onChange={(e) => setParPage(parseInt(e.target.value))}
-            className="px-4 py-2 focus:border-indigo-500 outline-none bg-[#6a5fdf] border border-slate-700 rounded-md text-[#d0d2d6]"
-          >
-            <option value="5">5</option>
-            <option value="10">10</option>
-            <option value="20">20</option>
-          </select>
-          <input
-            className="px-4 py-2 focus:border-indigo-500 outline-none bg-[#6a5fdf] border border-slate-700 rounded-md text-[#d0d2d6]"
-            type="text"
-            placeholder="search"
-          />
-        </div>
+        <Search
+          setParPage={setParPage}
+          setSearchValue={setSearchValue}
+          searchValue={searchValue}
+        />
 
-        <div className="relative overflow-x-auto">
+        <div className="relative overflow-x-auto mt-5">
           <table className="w-full text-sm text-left text-[#d0d2d6]">
             <thead className="text-sm text-[#d0d2d6] uppercase border-b border-slate-700">
               <tr>
                 <th scope="col" className="py-3 px-4">
-                  No
+                  Order Id
                 </th>
                 <th scope="col" className="py-3 px-4">
-                  Name
-                </th>
-                <th scope="col" className="py-3 px-4">
-                  Email
+                  Price
                 </th>
                 <th scope="col" className="py-3 px-4">
                   Payment Status
                 </th>
                 <th scope="col" className="py-3 px-4">
-                  Status
+                  Order Status
                 </th>
                 <th scope="col" className="py-3 px-4">
                   Action
@@ -57,46 +44,38 @@ const SellerRequest = () => {
 
             <tbody>
               {[1, 2, 3, 4, 5].map((d, i) => (
-                <tr className="border-b border-slate-700" key={i}>
+                <tr key={i}>
                   <td
                     scope="row"
-                    className="py-2 px-4 font-medium whitespace-nowrap"
+                    className="py-1 px-4 font-medium whitespace-nowrap"
                   >
-                    {d}
+                    #5455
                   </td>
                   <td
                     scope="row"
-                    className="py-2 px-4 font-medium whitespace-nowrap"
+                    className="py-1 px-4 font-medium whitespace-nowrap"
                   >
-                    Kazi Ariyan{" "}
+                    $455
                   </td>
                   <td
                     scope="row"
-                    className="py-2 px-4 font-medium whitespace-nowrap"
+                    className="py-1 px-4 font-medium whitespace-nowrap"
                   >
-                    ariyan@gmail.com
+                    pending{" "}
                   </td>
                   <td
                     scope="row"
-                    className="py-2 px-4 font-medium whitespace-nowrap"
+                    className="py-1 px-4 font-medium whitespace-nowrap"
                   >
-                    <span>Inactive</span>{" "}
+                    pending
                   </td>
-
                   <td
                     scope="row"
-                    className="py-2 px-4 font-medium whitespace-nowrap"
-                  >
-                    <span>Pending</span>{" "}
-                  </td>
-
-                  <td
-                    scope="row"
-                    className="py-2 px-4 font-medium whitespace-nowrap"
+                    className="py-1 px-4 font-medium whitespace-nowrap"
                   >
                     <div className="flex justify-start items-center gap-4">
                       <Link
-                        to="/admin/dashboard/seller/details/2"
+                        to={`/seller/dashboard/order/details/34`}
                         className="p-[6px] bg-green-500 rounded hover:shadow-lg hover:shadow-green-500/50"
                       >
                         {" "}
@@ -124,4 +103,4 @@ const SellerRequest = () => {
   );
 };
 
-export default SellerRequest;
+export default Orders;
